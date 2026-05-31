@@ -1,0 +1,88 @@
+# ═══════════════════════════════════════════════════════════════
+# configs/params.yaml
+# ─────────────────────────────────────────────────────────────
+# Single source of truth for ALL project hyperparameters.
+# Every notebook reads from this file — no magic numbers.
+# ═══════════════════════════════════════════════════════════════
+
+# ── Global ──
+random_seed: 42
+target_column: "status"
+valid_statuses: ["operating", "closed", "acquired", "ipo"]
+primary_metric: "macro_f1"
+
+# ── Data Paths ──
+paths:
+  raw_data: "../data/raw/big_startup_secsees_dataset.csv"
+  artifacts: "../artifacts/"
+  models: "../models/"
+  results: "../results/"
+
+# ── Split Ratios ──
+split:
+  test_size: 0.30       # first split: 70% train, 30% temp
+  val_ratio: 0.50       # second split: 50/50 → 15% val, 15% test
+  # Final: 70% train, 15% val, 15% test
+
+# ── Feature Engineering ──
+features:
+  top_n_countries: 10
+  top_n_categories: 20
+  top_n_regions: 10
+  add_funding_velocity: true
+  add_category_count: true
+
+# ── SMOTE ──
+smote:
+  k_neighbors: 5
+
+# ── Random Forest ──
+random_forest:
+  n_estimators: 300
+  max_depth: null        # unlimited depth
+  min_samples_split: 5
+  class_weight: "balanced"
+  n_jobs: -1
+
+# ── SVM ──
+svm:
+  C: 1.0
+  kernel: "rbf"
+  class_weight: "balanced"
+  probability: true
+  max_train_samples: 20000   # subset for speed (documented tradeoff)
+
+# ── XGBoost ──
+xgboost:
+  n_estimators: 500
+  learning_rate: 0.05
+  max_depth: 6
+  subsample: 0.8
+  colsample_bytree: 0.8
+  eval_metric: "mlogloss"
+  early_stopping_rounds: 30
+  n_jobs: -1
+
+# ── MLP (PyTorch) ──
+mlp:
+  hidden_layers: [256, 128, 64]
+  dropout: [0.3, 0.2, 0.0]
+  batch_size: 512
+  learning_rate: 0.001
+  n_epochs: 100
+  patience: 10
+  scheduler_patience: 5
+  scheduler_factor: 0.5
+
+# ── Tab Transformer (PyTorch) ──
+tab_transformer:
+  d_model: 64
+  nhead: 4
+  num_layers: 2
+  dropout: 0.1
+  batch_size: 512
+  learning_rate: 0.0005
+  n_epochs: 100
+  patience: 10
+  scheduler_patience: 5
+  scheduler_factor: 0.5
