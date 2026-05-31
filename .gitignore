@@ -1,0 +1,57 @@
+# ═══════════════════════════════════════════════════════════════
+# .gitignore — Startup Classification Project
+# ═══════════════════════════════════════════════════════════════
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data (too large for git)
+data/
+*.csv
+*.xlsx
+*.xls
+*.parquet
+
+# Model artifacts (too large, reproduced by running notebooks)
+models/*.pkl
+models/*.pt
+models/*.h5
+models/*.keras
+models/*.joblib
+artifacts/*.pkl
+*.tfevents*
+
+# Results (reproduced by running notebooks)
+results/
+reports/figures/
+reports/metrics/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# MLflow
+mlruns/
+
+# CatBoost training logs
+catboost_info/
