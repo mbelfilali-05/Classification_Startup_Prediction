@@ -1,0 +1,11 @@
+[theme]
+base = "light"
+primaryColor = "#4f46e5"
+backgroundColor = "#f6f7fb"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#14161f"
+font = "sans serif"
+
+[server]
+# Larger upload cap for the batch tab (MB)
+maxUploadSize = 50
